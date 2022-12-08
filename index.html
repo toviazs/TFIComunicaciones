@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>TFI</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/eadb2c6c05.js" crossorigin="anonymous"></script>
+
+    <!-- styles file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-sm">
+            <a class="navbar-brand ms-1" href="/index.html">
+                <img src="recursos/logo-negro.png" alt="Bootstrap" width="24" height="24"> Comunicaciones
+            </a>
+            <button class="navbar-toggler d-lg-none bg-light" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ms-auto mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calculadora/calculadora-crc.html">Calculadora CRC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chequeo/chequeo-crc.html">Chequeo CRC</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-fluid row justify-content-center">
+            <div class="col-10 col-md-8 col-lg-6 justify-content-center">
+                <h1 class="display-3 text-center m-5">Sistema Integrador de Comunicaciones</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center align-items-center g-2">
+                <div class="col border-top border-bottom border-dark p-5">
+                    <p class="text-center fw-bold fs-5 p-0 m-0">
+                        Bienvenidos a la primera implementación web del sistema integrador de la materia de
+                        Comunicaciones
+                    </p>
+                    <p class="text-center text-secondary p-0 m-0">
+                        Este sistema se encuentra actualmente en desarrollo, por lo que es probable que
+                        algunas
+                        funcionalidades no estén disponibles.
+                    </p>
+                </div>
+                <div class="col-12">
+                    <h3 class="display-5 text-center mt-5 mb-3">Funciones</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor de las cards -->
+
+        <div class="container-fluid row justify-content-center align-items-stretch ultimoElemento">
+            <div class="col-8 row align-items-stretch justify-content-center">
+                <div class="col-12 col-md-6 col-xl-3 d-flex">
+                    <div class="card text-center m-1">
+                        <div class="card-body">
+                            <h4 class="card-title">Calculadora CRC</h4>
+                            <p class="card-text text-secondary">Calcular el polinomio a transmitir a partir de un
+                                mensaje y un generador</p>
+                            <a href="/calculadora/calculadora-crc.html">Vamos!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3 d-flex">
+                    <div class="card text-center m-1">
+                        <div class="card-body">
+                            <h4 class="card-title">Chequeo CRC</h4>
+                            <p class="card-text text-secondary"> Verificar si hubo error en la transmisión utilizando
+                                CRC
+                            </p>
+                            <a href="/chequeo/chequeo-crc.html">Vamos!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-3 row align-items-center w-100 m-0">
+        <div class="row justify-content-center align-items-center g-2">
+            <div class="col-5">
+                <p class="text-white text-start">© TFI Comunicaciones </p>
+            </div>
+            <div class="col-5 text-end">
+                <img src="recursos/logo-blanco.png" alt="Bootstrap" width="30" height="30">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
