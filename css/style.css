@@ -39,7 +39,7 @@ footer {
 h1,
 h3 {
     font-size: 72px;
-    background: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
+    background-image: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -63,7 +63,7 @@ h3 {
 
 .colorido {
     font-weight: bold;
-    background: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
+    background-image: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
