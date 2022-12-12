@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>TFI</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/eadb2c6c05.js" crossorigin="anonymous"></script>
+
+    <!-- styles file -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-sm">
+            <a class="navbar-brand ms-1" href="../index.html">
+                <img src="../recursos/logo-negro.png" alt="Bootstrap" width="24" height="24"> Comunicaciones
+            </a>
+            <button class="navbar-toggler d-lg-none bg-light" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ms-auto mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../calculadora/calculadora-crc.html">Calculadora CRC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page">Teoría<span
+                                class="visually-hidden"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <nav class="breadcrumb">
+            <a class="breadcrumb-item" href="../index.html">Home</a>
+            <span class="breadcrumb-item active" aria-current="page">Teoría</span>
+        </nav>
+
+        <div class="container-fluid row justify-content-center">
+            <div class="col-6 justify-content-center">
+                <h1 class="display-3 text-center mb-2 ms-0 me-0 ms-md-2 me-md-2 ms-xl-5 me-xl-5">Teoría CRC
+                </h1>
+            </div>
+        </div>
+
+        <div class="container border-top border-dark border-2">
+            <div class="row justify-content-center align-items-start p-2">
+                <h1 class="display-5 fs-1 text-center p-2">Concepto</h1>
+                <p class="col-12 justify-content-center">
+                    El método se basa en la detección de errores por medio de operaciones aritméticas con
+                    polinomios que utilizan la técnica conocida como de módulo 2, en la que no hay términos
+                    de acarreo para la suma, ni de préstamo para la resta. Estas operaciones son realizadas
+                    con circuitos digitales convencionales que ejecutan la función <span class="fw-bold">OR
+                        EXCLUSIVA</span>.
+                </p>
+            </div>
+        </div>
+        <div class="container border-top border-dark ultimoElemento">
+            <h1 class="display-5 fs-1 text-center p-2">Algoritmo</h1>
+            <div class="row justify-content-center align-items-startborder-bottom border-dark p-2">
+                <ol class="col-8 justify-content-center" id="lista">
+                    <li>Definimos un polinomio <span class="fw-bold">M(x)</span> de grado <span
+                            class="fst-italic">n</span> con los bits del mensaje a
+                        transmitir</li>
+                    <img src="../recursos/item-1.png" width="100%">
+
+                    <li>Definimos un polinomio <span class="fw-bold">G(x)</span> de grado <span
+                            class="fst-italic">r</span> (generador)</li>
+                    <img src="../recursos/item-2.png" width="100%">
+
+                    <li>Definimos un polinomio auxiliar de valor <span class="fw-bold">X<sup>r</sup></span> más alto
+                        que tenga <span class="fw-bold">G(x)</span>.
+                        El grado <span class="fst-italic">n</span> del polinomio <span class="fw-bold">M(x)</span> debe
+                        ser:
+                        <span class="fst-italic">n</span>>><span class="fst-italic">r</span>
+                    </li>
+                    <img src="../recursos/item-3.png" width="100%">
+
+                    <li>Se forma un nuevo polinomio que contenga <span class="fw-bold">(r+n)</span> bits, de la forma
+                        <span class="fw-bold">P(x)=X<sup>r</sup>.M(x)</span>
+                    </li>
+                    <img src="../recursos/item-4.png" width="100%">
+
+                    <li>Se divide el nuevo polinomio formado <span class="fw-bold">P(x)</span> por el polinomio
+                        generador <span class="fw-bold">G(x)</span>. De dicha
+                        división se obtendrá un polinomio resto <span class="fw-bold">R(x)</span> que siempre debe tener
+                        un número de bits
+                        menor o igual que <span class="fst-italic">r</span>
+                    </li>
+                    <img src="../recursos/item-5.png" width="100%">
+
+                    <li>Finalmente, se procede a obtener un polinomio que denominaremos: <span
+                            class="fw-bold">T(x)=P(x)+R(x)</span>, que es el
+                        polinomio
+                        a transmitir
+                    </li>
+                    <img src="../recursos/item-6.png" width="100%">
+
+                    <li>Se transmite <span class="fw-bold">T(x)</span> y se recibe <span
+                            class="fw-bold">T'(x)=T(x)+E(x)</span>, donde <span class="fw-bold">E(x)</span> sería el
+                        error provocado por el canal
+                    </li>
+                    <img src="../recursos/item-7.png" width="100%">
+
+                    <li>Finalmente en el receptor se realiza la operación <span class="fw-bold">T'(x)/G(x)</span> y se
+                        obtendrá un <span class="fw-bold">R(x)</span>.
+                        Si <span class="fw-bold">R(x)=0</span> no hay error, caso contrario, los datos recibidos poseen
+                        error
+                    </li>
+                    <img src="../recursos/item-8.png" width="100%">
+
+                    <li class="text-muted">Ya entendí, ahora <a href="../calculadora/calculadora-crc.html">vamos a
+                            calcular!</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-3 row align-items-center w-100 m-0">
+        <div class="row justify-content-center align-items-center g-2">
+            <div class="col-5">
+                <p class="text-white text-start fw-light">© by Paz Posse, Tobías - 52596</p>
+            </div>
+            <div class="col-5 text-end">
+                <img src="../recursos/logo-blanco.png" alt="Bootstrap" width="30" height="30">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

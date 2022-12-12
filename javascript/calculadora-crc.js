@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const formCRC = document.getElementById('formCRC');
+    const formCalculoCRC = document.getElementById('formCalculoCRC');
 
-    formCRC.addEventListener('submit', evt => {
+    formCalculoCRC.addEventListener('submit', evt => {
         evt.preventDefault();
         const txtMensaje = document.getElementById('txtMensaje').value;
         const txtGenerador = document.getElementById('txtGenerador').value;
@@ -9,27 +9,48 @@ window.addEventListener('DOMContentLoaded', () => {
         try {
             validarCadena(txtMensaje);
             validarCadena(txtGenerador);
-            validarMensajeGenerador(txtMensaje, txtGenerador);
+            validarMensajeGeneradorCalculo(txtMensaje, txtGenerador);
 
             let mensaje = imprimir(comprimirNroBinario(txtMensaje));
             let generador = imprimir(comprimirNroBinario(txtGenerador));
 
             let resultado = calcularResto(mensaje, generador);
-            render(resultado);
+            renderCalculo(resultado);
         } catch (error) {
-            render(error.message);
-            renderConclusion('');
+            renderCalculo(error.message);
+        }
+    })
+
+    const formChequeoCRC = document.getElementById('formChequeoCRC');
+
+    formChequeoCRC.addEventListener('submit', evt => {
+        evt.preventDefault();
+        const txtRecibido = document.getElementById('txtRecibido').value;
+        const txtGenerador = document.getElementById('txtGenerador').value;
+
+        try {
+            validarCadena(txtRecibido);
+            validarCadena(txtGenerador);
+            validarMensajeGeneradorChequeo(txtRecibido, txtGenerador);
+
+            let recibido = imprimir(comprimirNroBinario(txtRecibido));
+            let generador = imprimir(comprimirNroBinario(txtGenerador));
+
+            let resultado = chequearResto(recibido, generador);
+            renderChequeo(resultado);
+        } catch (error) {
+            renderChequeo(error.message);
         }
     })
 })
 
+//#region Funciones principales
 
 const calcularResto = (mensaje, generador) => {
     let printOperacion = '';
     let polinomioAuxiliar = formarP(mensaje, generador);
 
-    printOperacion += `
-${imprimir(polinomioAuxiliar)}|${generador}`;
+    printOperacion += `${imprimir(polinomioAuxiliar)}|${generador}`;
 
     let i = 0;
     let partMensaje;
@@ -43,8 +64,8 @@ ${imprimir(polinomioAuxiliar)}|${generador}`;
             resultadoXOR = operadorXOR(partMensaje, generador);
             ultimoGeneradorUsado = generador;
         } else if (partGenerador[0] == '0') {
-            resultadoXOR = operadorXOR(imprimirNCeros(generador.length), partGenerador);
-            ultimoGeneradorUsado = imprimirNCeros(generador.length);
+            resultadoXOR = operadorXOR(imprimirN(generador.length, '0'), partGenerador);
+            ultimoGeneradorUsado = imprimirN(generador.length, '0');
         } else {
             resultadoXOR = operadorXOR(generador, partGenerador);
             ultimoGeneradorUsado = generador;
@@ -59,53 +80,184 @@ ${imprimir(polinomioAuxiliar)}|${generador}`;
         }
         partGenerador.shift();
 
-        printOperacion += `
-${imprimirNEspacios(i)}${ultimoGeneradorUsado}
-${imprimirNEspacios(i)}${imprimirNGuiones(generador.length)}
-${imprimirNEspacios(i + 1)}${imprimir(partGenerador)}`
+        printOperacion += `\n${imprimirN(i, ' ')}${ultimoGeneradorUsado}\n${imprimirN(i, ' ')}${imprimirN(generador.length, '-')}\n${imprimirN(i + 1, ' ')}${imprimir(partGenerador)}`
         i++;
     }
 
     let resto = imprimir(partGenerador);
 
-    let printCompleto = `G(X) = ${generador} | generador\n
-M(X) = ${mensaje} | mensaje\n
-R(X) = ${resto} | resto\n\n
-Operación:
-`
+    let printCompleto = `generador: ${generador}\n\nmensaje: ${mensaje}\n\nresto: ${resto}\n\n\n`
 
     printCompleto += printOperacion;
 
     let mensajeFinal = mensaje + resto;
 
-    renderConclusion(`\n El polinomio a transmitir es<br>T(X) = ${mensajeFinal}`);
+    renderConclusionCalculo(`Se transmite<br>T(X) = ${mensajeFinal}`);
+    arrastrarResultado(mensajeFinal);
 
     return printCompleto;
 }
 
-const imprimirNEspacios = (num) => {
+const chequearResto = (mensaje, generador) => {
+    let printOperacion = '';
+    let polinomioAuxiliar = mensaje.split('');
+
+    printOperacion += `${imprimir(polinomioAuxiliar)}|${generador}`;
+
+    let i = 0;
+    let partMensaje;
+    let resultadoXOR;
+    let partGenerador;
+    let ultimoGeneradorUsado;
+    while (polinomioAuxiliar.length >= generador.length) {
+        partMensaje = polinomioAuxiliar.slice(0, generador.length);
+
+        if (i == 0) {
+            resultadoXOR = operadorXOR(partMensaje, generador);
+            ultimoGeneradorUsado = generador;
+        } else if (partGenerador[0] == '0') {
+            resultadoXOR = operadorXOR(imprimirN(generador.length, '0'), partGenerador);
+            ultimoGeneradorUsado = imprimirN(generador.length, '0');
+        } else {
+            resultadoXOR = operadorXOR(generador, partGenerador);
+            ultimoGeneradorUsado = generador;
+        }
+
+        polinomioAuxiliar.shift();
+
+        if (polinomioAuxiliar.length >= generador.length) {
+            partGenerador = resultadoXOR.concat(polinomioAuxiliar[generador.length - 1]);
+        } else {
+            partGenerador = resultadoXOR;
+        }
+        partGenerador.shift();
+
+        printOperacion += `\n${imprimirN(i, ' ')}${ultimoGeneradorUsado}\n${imprimirN(i, ' ')}${imprimirN(generador.length, '-')}\n${imprimirN(i + 1, ' ')}${imprimir(partGenerador)}`
+        i++;
+    }
+
+    let resto = imprimir(partGenerador);
+
+    let printCompleto = `generador: ${generador}\n\nrecibido: ${mensaje}\n\nresto: ${resto}\n\n\n`
+
+    printCompleto += printOperacion;
+
+    if (parseInt(resto) == 0) {
+        renderConclusionChequeo(`El resto es ${resto}<br>No hay error`, 'sinError');
+    } else {
+        renderConclusionChequeo(`El resto (${resto}) no es nulo<br>Hubo error`, 'error');
+    }
+
+    return printCompleto;
+}
+
+//#endregion
+
+//#region Validaciones
+
+const validarMensajeGeneradorChequeo = (mensaje, generador) => {
+    gradoGenerador = generador.length - 1;
+    gradoRecibido = mensaje.length - 1;
+    gradoMensaje = gradoRecibido - gradoGenerador;
+
+    if (gradoMensaje <= gradoGenerador) {
+        throw new Error('El grado de T(X) debe ser mayor que la suma de los grados de G(X) y M(X)');
+    }
+}
+
+const validarMensajeGeneradorCalculo = (mensaje, generador) => {
+    if (mensaje.length <= generador.length) {
+        throw new Error('El grado de M(X) debe ser mayor que el de G(X)');
+    }
+}
+
+const validarCadena = (str) => {
+    if (str == '') {
+        throw new Error('Hay campos vacíos');
+    }
+
+    if (str.length > 15) {
+        throw new Error("Longitud máxima 15 bits")
+    }
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] != "0" && str[i] != "1") {
+            throw new Error('La cadena ingresada no corresponde a un número binario')
+        }
+    }
+}
+
+//#endregion
+
+//#region Impresiones
+
+const imprimir = (array) => {
+    let str = '';
+    array.forEach(e => { str += `${e}`; });
+
+    return str;
+}
+
+const renderCalculo = (texto) => {
+    const txtAreaCalculo = document.getElementById('resultadoCalculoTxt');
+    const txtAreaChequeo = document.getElementById('resultadoChequeoTxt');
+    txtAreaChequeo.innerHTML = ''
+
+    txtAreaCalculo.innerHTML = texto;
+
+    let numLines = texto.split('\n').length;
+    for (let i = 0; i < numLines; i++) {
+        txtAreaChequeo.innerHTML += '\n';
+    }
+}
+
+const renderChequeo = (texto) => {
+    const txtAreaChequeo = document.getElementById('resultadoChequeoTxt');
+
+    txtAreaChequeo.innerHTML = texto;
+}
+
+const renderConclusionCalculo = (texto) => {
+    const div = document.getElementById("divConclusion");
+    div.innerHTML = `
+        <h1 class="display-5 fs-3 text-center centered" id="parrafoConclusion">
+            ${texto}
+        </h1>
+        <img src="../recursos/flecha.png" alt="flecha" srcset="" class="imagen" width="100%">`
+}
+
+const renderConclusionChequeo = (texto, tipo) => {
+    const div = document.getElementById("divConclusion");
+    div.innerHTML = `
+        <h1 class="display-5 fs-3 text-center centered" id="parrafoConclusion">
+            ${texto}
+        </h1>`
+
+    if (tipo == 'error') {
+        div.innerHTML += `
+        <img src="../recursos/cruz.png" alt="cruz" srcset="" class="imagen" width="100%">`
+    } else {
+        div.innerHTML += `
+        <img src="../recursos/tilde.png" alt="tilde" srcset="" class="imagen" width="100%">`
+    }
+}
+
+const arrastrarResultado = (resultado) => {
+    const txtRecibido = document.getElementById('txtRecibido');
+    txtRecibido.value = resultado;
+}
+
+const imprimirN = (num, char) => {
     let str = '';
     for (let i = 0; i < num; i++) {
-        str += ' ';
+        str += char;
     }
     return str;
 }
 
-const imprimirNGuiones = (num) => {
-    let str = '';
-    for (let i = 0; i < num; i++) {
-        str += '-';
-    }
-    return str;
-}
+//#endregion
 
-const imprimirNCeros = (num) => {
-    let str = "";
-    for (let i = 0; i < num; i++) {
-        str += '0';
-    }
-    return str;
-}
+//#region Funciones del dominio
 
 const formarP = (mensaje, generador) => {
     const n = generador.split('').length - 1;
@@ -135,25 +287,6 @@ const operadorXOR = (str1, str2) => {
     return resultado;
 }
 
-const validarCadena = (str) => {
-    if (str == '') {
-        throw new Error('Hay campos vacíos');
-    }
-
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] != "0" && str[i] != "1") {
-            throw new Error('La cadena ingresada no corresponde a un número binario')
-        }
-    }
-    return true;
-}
-
-const validarMensajeGenerador = (mensaje, generador) => {
-    if (mensaje.length <= generador.length) {
-        throw new Error('El grado de M(X) debe ser mayor que el de G(X)');
-    }
-}
-
 const comprimirNroBinario = (str) => {
     let isSignificativo = false;
     let strComprimido = [];
@@ -171,24 +304,4 @@ const comprimirNroBinario = (str) => {
     return strComprimido;
 }
 
-const imprimir = (array) => {
-    let str = '';
-    array.forEach(e => {
-        str += `${e}`;
-    })
-
-    return str;
-}
-
-const render = (texto) => {
-    const txtArea = document.getElementById('resultadoTxt');
-    txtArea.innerHTML = ''
-
-    txtArea.innerHTML = texto;
-}
-
-const renderConclusion = (texto) => {
-    const parrafo = document.getElementById("parrafoConclusion");
-    parrafo.innerHTML = ''
-    parrafo.innerHTML = texto;
-}
+//#endregion

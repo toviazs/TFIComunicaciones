@@ -15,15 +15,15 @@
     <script src="https://kit.fontawesome.com/eadb2c6c05.js" crossorigin="anonymous"></script>
 
     <!-- styles file -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
     <header>
         <!-- NavBar -->
         <nav class="navbar navbar-expand-sm">
-            <a class="navbar-brand ms-1" href="/index.html">
-                <img src="/recursos/logo-negro.png" alt="Bootstrap" width="24" height="24"> Comunicaciones
+            <a class="navbar-brand ms-1" href="../index.html">
+                <img src="../recursos/logo-negro.png" alt="Bootstrap" width="24" height="24"> Comunicaciones
             </a>
             <button class="navbar-toggler d-lg-none bg-light" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
@@ -42,7 +42,7 @@
                                 class="visually-hidden"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/chequeo/chequeo-crc.html">Chequeo CRC</a>
+                        <a class="nav-link" href="../teoría/teoria-crc.html">Teoría</a>
                     </li>
                 </ul>
             </div>
@@ -52,59 +52,104 @@
 
     <main>
         <nav class="breadcrumb">
-            <a class="breadcrumb-item" href="/index.html">Home</a>
+            <a class="breadcrumb-item" href="../index.html">Home</a>
             <span class="breadcrumb-item active" aria-current="page">Calculadora CRC</span>
         </nav>
-        <div class="container-fluid row justify-content-center">
+
+        <div class="container-fluid row justify-content-center border-bottom border-2 mb-5 border-dark">
             <div class="col-6 justify-content-center">
-                <h1 class="display-3 text-center mb-5 ms-0 me-0 ms-md-2 me-md-2 ms-xl-5 me-xl-5">Calculadora CRC
+                <h1 class="display-3 text-center mb-2 ms-0 me-0 ms-md-2 me-md-2 ms-xl-5 me-xl-5">
+                    Calculadora CRC
                 </h1>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row justify-content-center align-items-start border-top border-bottom border-dark p-5 g-2">
-                <div class="col-4  row justify-content-center">
-                    <form action="#" id="formCRC" class="col-8 col-md-6 col-lg-3 col-xl-6 text-center">
+        <div class="container-fluid row justify-content-center align-items-stretch border-bottom border-dark pb-5">
+            <!-- Emisor -->
+            <div class="container-fluid col-11 col-xl-4 row border border-4 border-secondary d-inline mb-5">
+                <h1 class="col-12 display-5 border-bottom border-dark border-1 text-center">Emisor</h1>
+                <p class="col-12 text-center text-muted">Calcula la cadena a
+                    transmitir <br>
+                    *Necesita un MENSAJE y un GENERADOR</p>
+
+                <!-- Campos Calculadora -->
+                <div class="col-12 justify-content-center row mb-3">
+                    <form action="#" id="formCalculoCRC" class="col-8 col-md-6 col-lg-3 col-xl-6 text-center">
                         <div class="mb-3">
-                            <label for="txtMensaje" class="form-label">M(X)</label>
+                            <label for="txtMensaje" class="form-label">Mensaje</label>
                             <input type="text" class="form-control" name="nro" id="txtMensaje"
                                 aria-describedby="helpIdLeg" placeholder="">
-                            <small id="helpIdLeg" class="form-text text-muted">Polinomio mensaje</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtGenerador" class="form-label">G(X)</label>
-                            <input type="text" class="form-control" name="nro" id="txtGenerador"
-                                aria-describedby="helpIdLeg" placeholder="">
-                            <small id="helpIdLeg" class="form-text text-muted">Polinomio generador</small>
+                            <small id="helpIdLeg" class="form-text text-muted">Polinomio M(x)</small>
                         </div>
                         <button type="submit" class="btn btn-outline-dark">Calcular R(X)</button>
                     </form>
                 </div>
 
-                <div class="col-4">
-                    <p class="txtArea" id="resultadoTxt">
+                <!-- Txt Area Calculadora -->
+                <div class="col-12">
+                    <p class="txtArea" id="resultadoCalculoTxt">
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contenedor del medio -->
+            <div class="container col-11 col-xl-4 row justify-content-center align-items-start mb-5">
+                <p class="col-8 text-center text-muted m-3">Indique el GENERADOR que
+                    usará tanto el EMISOR como el RECEPTOR</p>
+                <form action="#" id="formCRC" class="col-6 text-center">
+                    <div class="mb-3">
+                        <label for="txtGenerador" class="form-label">Generador</label>
+                        <input type="text" class="form-control" name="nro" id="txtGenerador"
+                            aria-describedby="helpIdLeg" placeholder="">
+                        <small id="helpIdLeg" class="form-text text-muted">Polinomio G(x)</small>
+                    </div>
+                </form>
+
+                <div class="col-12 container txtSobreImg" id="divConclusion">
+                </div>
+
+                <div class="h-100"></div>
+            </div>
+
+            <!-- Receptor -->
+            <div class="container-fluid col-11 col-xl-4 row border border-4 border-secondary d-inline mb-5">
+                <h1 class="col-12 display-5 border-bottom border-dark border-1 text-center">Receptor</h1>
+                <p class="col-12 text-center text-muted">Verifica la transmisión <br>
+                    *Necesita un RECIBIDO y un GENERADOR</p>
+
+                <!-- Campos Chequeadora -->
+                <div class="col-12 justify-content-center row mb-3">
+                    <form action="#" id="formChequeoCRC" class="col-8 col-md-6 col-lg-3 col-xl-6 text-center">
+                        <div class="mb-3">
+                            <label for="txtMensaje" class="form-label">Mensaje recibido</label>
+                            <input type="text" class="form-control" name="nro" id="txtRecibido"
+                                aria-describedby="helpIdLeg" placeholder="">
+                            <small id="helpIdLeg" class="form-text text-muted">Polinomio T(x)</small>
+                        </div>
+                        <button type="submit" class="btn btn-outline-dark">Verificar T(X)</button>
+                    </form>
+                </div>
+
+                <!-- Txt Area Chequeadora -->
+                <div class="col-12">
+                    <p class="txtArea" id="resultadoChequeoTxt">
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="container-fluid row justify-content-center ultimoElemento mt-5">
-            <div class="col-4 text-center">
-                <p id="parrafoConclusion" class="colorido">
-                </p>
-            </div>
-        </div>
+        <p class="text-center m-5 text-muted">No entiendo, quiero ver la <a href="../teoría/teoria-crc.html">teoría</a>
+        </p>
     </main>
 
     <!-- Footer -->
     <footer class="bg-dark py-3 row align-items-center w-100 m-0">
         <div class="row justify-content-center align-items-center g-2">
             <div class="col-5">
-                <p class="text-white text-start">© TFI Comunicaciones </p>
+                <p class="text-white text-start fw-light">© by Paz Posse, Tobías - 52596</p>
             </div>
             <div class="col-5 text-end">
-                <img src="/recursos/logo-blanco.png" alt="Bootstrap" width="30" height="30">
+                <img src="../recursos/logo-blanco.png" alt="Bootstrap" width="30" height="30">
             </div>
         </div>
     </footer>
@@ -118,7 +163,7 @@
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
         </script>
 
-    <script src="/javascript/calculadora-crc.js"></script>
+    <script src="../javascript/calculadora-crc.js"></script>
 </body>
 
 </html>
