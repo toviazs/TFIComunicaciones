@@ -27,7 +27,7 @@ footer {
 .navbar {
     background: #edaef9;
     background: -moz-linear-gradient(left, #edaef9 0%, #81b1fa 100%);
-    background: -webkit-linear-gradient(left, #edaef9 0%, #81b1fa 100%);
+    background: linear-gradient(left, #edaef9 0%, #81b1fa 100%);
     background: linear-gradient(to right, #edaef9 0%, #81b1fa 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#edaef9', endColorstr='#81b1fa', GradientType=1);
 }
@@ -39,7 +39,7 @@ footer {
 h1,
 h3 {
     font-size: 72px;
-    background: -webkit-linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
+    background: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -52,7 +52,7 @@ h3 {
     font-family: monospace;
     word-break: break-all;
     white-space: pre-wrap;
-    background-image: -webkit-linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
+    background-image: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
     line-height: 15px;
     padding: 10px;
     font-weight: bold;
@@ -63,7 +63,7 @@ h3 {
 
 .colorido {
     font-weight: bold;
-    background: -webkit-linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
+    background: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
