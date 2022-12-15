@@ -64,21 +64,21 @@
             </div>
         </div>
 
-        <div class="container-fluid row justify-content-center align-items-stretch border-bottom border-dark pb-5">
+        <div
+            class="container-fluid row justify-content-center align-items-stretch border-bottom border-dark pb-5 ultimoElemento">
             <!-- Emisor -->
             <div class="container-fluid col-11 col-xl-4 row border border-4 border-secondary d-inline mb-5">
                 <h1 class="col-12 display-5 border-bottom border-dark border-1 text-center">Emisor</h1>
-                <p class="col-12 text-center text-muted">Calcula la cadena a
-                    transmitir <br>
-                    *Necesita un MENSAJE y un GENERADOR</p>
+                <p class="col-12 text-center text-muted fs-4">Calcula la cadena a
+                    transmitir</p>
 
                 <!-- Campos Calculadora -->
                 <div class="col-12 justify-content-center row mb-3">
                     <form action="#" id="formCalculoCRC" class="col-8 col-md-6 col-lg-3 col-xl-6 text-center">
                         <div class="mb-3">
-                            <label for="txtMensaje" class="form-label">Mensaje</label>
+                            <label for="txtMensaje" class="form-label fs-4">Mensaje</label>
                             <input type="text" class="form-control" name="nro" id="txtMensaje"
-                                aria-describedby="helpIdLeg" placeholder="">
+                                aria-describedby="helpIdLeg" placeholder="" required>
                             <small id="helpIdLeg" class="form-text text-muted">Polinomio M(x)</small>
                         </div>
                         <button type="submit" class="btn btn-outline-dark">Calcular R(X)</button>
@@ -94,13 +94,13 @@
 
             <!-- Contenedor del medio -->
             <div class="container col-11 col-xl-4 row justify-content-center align-items-start mb-5">
-                <p class="col-8 text-center text-muted m-3">Indique el GENERADOR que
-                    usará tanto el EMISOR como el RECEPTOR</p>
+                <p class="col-8 text-center text-muted m-3 fs-4">Indique el GENERADOR que
+                    usará el sistema</p>
                 <form action="#" id="formCRC" class="col-6 text-center">
                     <div class="mb-3">
-                        <label for="txtGenerador" class="form-label">Generador</label>
+                        <label for="txtGenerador" class="form-label fs-4">Generador</label>
                         <input type="text" class="form-control" name="nro" id="txtGenerador"
-                            aria-describedby="helpIdLeg" placeholder="">
+                            aria-describedby="helpIdLeg" placeholder="" form="formCalculoCRC" required>
                         <small id="helpIdLeg" class="form-text text-muted">Polinomio G(x)</small>
                     </div>
                 </form>
@@ -108,22 +108,27 @@
                 <div class="col-12 container txtSobreImg" id="divConclusion">
                 </div>
 
-                <div class="h-100"></div>
+                <div class="h-100 align-items-center p-5">
+                    <div id="sugerenciaTxt">
+                        <p class="text-center text-muted fs-4 fw-light">No entiendo, quiero ver la <a
+                                href="../teoría/teoria-crc.html">teoría</a>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!-- Receptor -->
             <div class="container-fluid col-11 col-xl-4 row border border-4 border-secondary d-inline mb-5">
                 <h1 class="col-12 display-5 border-bottom border-dark border-1 text-center">Receptor</h1>
-                <p class="col-12 text-center text-muted">Verifica la transmisión <br>
-                    *Necesita un RECIBIDO y un GENERADOR</p>
+                <p class="col-12 text-center text-muted fs-4">Verifica la transmisión</p>
 
                 <!-- Campos Chequeadora -->
                 <div class="col-12 justify-content-center row mb-3">
                     <form action="#" id="formChequeoCRC" class="col-8 col-md-6 col-lg-3 col-xl-6 text-center">
                         <div class="mb-3">
-                            <label for="txtMensaje" class="form-label">Mensaje recibido</label>
+                            <label for="txtMensaje" class="form-label fs-4">Mensaje recibido</label>
                             <input type="text" class="form-control" name="nro" id="txtRecibido"
-                                aria-describedby="helpIdLeg" placeholder="">
+                                aria-describedby="helpIdLeg" placeholder="" required>
                             <small id="helpIdLeg" class="form-text text-muted">Polinomio T(x)</small>
                         </div>
                         <button type="submit" class="btn btn-outline-dark">Verificar T(X)</button>
@@ -137,9 +142,6 @@
                 </div>
             </div>
         </div>
-
-        <p class="text-center m-5 text-muted">No entiendo, quiero ver la <a href="../teoría/teoria-crc.html">teoría</a>
-        </p>
     </main>
 
     <!-- Footer -->

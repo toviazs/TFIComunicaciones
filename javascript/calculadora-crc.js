@@ -1,4 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
+    localStorage["tipoTeoria"] = 'default';
+
     const formCalculoCRC = document.getElementById('formCalculoCRC');
 
     formCalculoCRC.addEventListener('submit', evt => {
@@ -16,6 +18,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
             let resultado = calcularResto(mensaje, generador);
             renderCalculo(resultado);
+
+            localStorage["generador"] = generador;
+            localStorage["mensaje"] = mensaje;
+
+            const sugerenciaTxt = document.getElementById('sugerenciaTxt');
+
+            sugerenciaTxt.innerHTML = `<p class="text-center text-muted fs-4 fw-light">No entiendo, quiero ver la <a
+            href="../teoría/teoria-crc.html">teoría</a>
+            </p>
+            <p class="text-center text-muted fs-4 fw-light">Prefiero ver la <a
+            href="../teoría/teoria-crc.html" onClick="cambiarLocalStorage('tipoTeoria','personalizada')">teoría de mi cálculo</a>
+            </p>`
         } catch (error) {
             renderCalculo(error.message);
         }
@@ -43,6 +57,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     })
 })
+
+const cambiarLocalStorage = (indice, valor) => {
+    localStorage[indice] = valor;
+}
 
 //#region Funciones principales
 
@@ -173,7 +191,7 @@ const validarMensajeGeneradorCalculo = (mensaje, generador) => {
 
 const validarCadena = (str) => {
     if (str == '') {
-        throw new Error('Hay campos vacíos');
+        throw new Error('Ingrese un generador');
     }
 
     if (str.length > 15) {

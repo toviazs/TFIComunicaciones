@@ -39,9 +39,11 @@ footer {
 h1,
 h3 {
     font-size: 72px;
-    background-image: linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220));
+    /* background: -webkit-linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220)); */
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* -webkit-text-fill-color: transparent; */
+    color: #7a7a7a;
+    font-weight: light;
 }
 
 .ultimoElemento {
@@ -109,4 +111,34 @@ body {
     padding: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+}
+
+.txtItem {
+    font-family: monospace;
+    word-break: break-all;
+    white-space: pre-wrap;
+    background-image: linear-gradient(rgb(40, 166, 205, 0.500), rgb(220, 118, 220, 0.500));
+    line-height: auto;
+    padding: auto !important;
+    font-weight: lighter;
+    color: black;
+    font-kerning: none;
+    font-size: larger;
+    text-align: center;
+}
+
+.txtDivision {
+    font-family: monospace;
+    word-break: break-all;
+    white-space: pre-wrap;
+    background-image: linear-gradient(rgb(40, 166, 205, 0.500), rgb(220, 118, 220, 0.500));
+    line-height: auto;
+    padding: auto !important;
+    padding-left: 40% !important;
+
+    font-weight: lighter;
+    color: black;
+    font-kerning: none;
+    font-size: larger;
+    text-align: left;
 }
