@@ -39,9 +39,7 @@ footer {
 h1,
 h3 {
     font-size: 72px;
-    /* background: -webkit-linear-gradient(rgb(40, 166, 205), rgb(220, 118, 220)); */
     background-clip: text;
-    /* -webkit-text-fill-color: transparent; */
     color: #7a7a7a;
     font-weight: light;
 }

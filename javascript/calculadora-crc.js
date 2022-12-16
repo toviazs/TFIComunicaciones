@@ -24,10 +24,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const sugerenciaTxt = document.getElementById('sugerenciaTxt');
 
-            sugerenciaTxt.innerHTML = `<p class="text-center text-muted fs-4 fw-light">No entiendo, quiero ver la <a
+            sugerenciaTxt.innerHTML = `<p class="text-center text-muted fs-5 fw-light">No entiendo, quiero ver la <a
             href="../teoría/teoria-crc.html">teoría</a>
             </p>
-            <p class="text-center text-muted fs-4 fw-light">Prefiero ver la <a
+            <p class="text-center text-muted fs-5 fw-light">Prefiero ver la <a
             href="../teoría/teoria-crc.html" onClick="cambiarLocalStorage('tipoTeoria','personalizada')">teoría de mi cálculo</a>
             </p>`
         } catch (error) {
